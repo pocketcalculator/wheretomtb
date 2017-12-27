@@ -1,13 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="description" content="Where To MTB: Getting you to the closest, rideable bike trails">
+    <meta name="keywords" content="Mountain Biking Trails,MTB">
+    <meta name="author" content="Paul Sczurek">
+    <title>Where To MTB?</title>
     <meta name="viewport" content="width=device-width">
-    <title>Where To MTB</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+    <header role="banner">
+         <h1>Where To MTB?</h1>
+    </header>
+    <main role="main">
+      <form class="frontPageForm">
+        <input type="text" name="address" id="address" placeholder="address or zip code" required>
+        <select name="radius" id="searchRadius" required>
+          <option value="" disabled selected>Radius</option>
+          <option value="5">5 Miles</option>
+          <option value="10">10 Miles</option>
+          <option value="20">20 Miles</option>
+          <option value="50">50 Miles</option>
+        </select>
+        <button type="submit" name="submit" id="submit">Go!</button>
+      </form>
+    </main>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3Vcl4OPXv5kIw7P6zIQsroab_GQsOL38"></script>
+    <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
