@@ -6,7 +6,7 @@ const ACCUWEATHER_CURRENT_CONDITIONS_URL = 'https://dataservice.accuweather.com/
 const MTB_PROJECT_API_KEY = '6523910-ecc597968f8123f52f6697bda4652415'
 const MTB_PROJECT_URL = 'https://www.mtbproject.com/data/get-trails'
 
-const trails = []
+let trails = []
 // name = name,
 // summary = summary,
 // img = imgSmall,
@@ -20,6 +20,21 @@ const searchQuery = {
 
 //const lat = '36.0598781'
 //const lon = '-84.3311592'
+function showForm() {
+  const formString = `<form class="frontPageForm">
+          <input type="text" name="address" id="address" placeholder="address or zip code" required>
+          <select name="radius" id="searchRadius" required>
+            <option value="" disabled selected>Radius</option>
+            <option value="5">5 Miles</option>
+            <option value="10">10 Miles</option>
+            <option value="20">20 Miles</option>
+            <option value="50">50 Miles</option>
+          </select>
+          <button type="submit" name="submit" id="submit">Go!</button>
+        </form>
+    `
+  $('main').html(formString)
+}
 
 function getUserLocation(searchQuery) {
   const settings = {
@@ -50,20 +65,26 @@ function getMTBData(location) {
     type: 'GET',
     dataType: 'JSON',
     success: function(data) {
-      data.trails.forEach(function(trail, index, trails) {
-        const location = {
-          lat: trail.latitude,
-          lng: trail.longitude
-        }
-        getAccuWeatherLocationKey(location, trail, trails.length)
-      })
+      if ( data.trails.length > 0 ) {
+        data.trails.forEach(function(trail, index) {
+          const location = {
+            lat: trail.latitude,
+            lng: trail.longitude
+          }
+          trail.coordinates = location
+          getAccuWeatherLocationKey(trail, data.trails.length)
+        })
+      }
+      else {
+        $('main').html(`<p>No results found.  Try expanding your search radius.</p>`)
+      }
     }
   }
   $.ajax(settings)
 }
 
-function getAccuWeatherLocationKey(location, trail, count) {
-  const coordinates = `${location.lat},${location.lng}`
+function getAccuWeatherLocationKey(trail, count) {
+  const coordinates = `${trail.coordinates.lat},${trail.coordinates.lng}`
   const settings = {
     url: ACCUWEATHER_GET_LOCATION_KEY_URL,
     data: {
@@ -90,6 +111,7 @@ function getRainData(locationKey, trail, count) {
     type: 'GET',
     dataType: 'JSON',
     success: function(data) {
+      trail.weather = data[0].WeatherText
       trail.precipitation = data[0].PrecipitationSummary.Past24Hours.Imperial.Value
       trails.push(trail)
       if ( trails.length >= count ) {
@@ -104,34 +126,32 @@ function getRainData(locationKey, trail, count) {
 
 function initMap(trails) {
   console.log(trails)
-  let trail1 = {lat: trails[0].latitude, lng: trails[0].longitude};
-  let map = new google.maps.Map(document.getElementById('map'), {
+  const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
-    center: trail1
-  });
-
-  let trail1_contentString = `<div id="content">
-      <div id="siteNotice">
-      </div>
-      <h1 id="firstHeading" class="firstHeading">${trails[0].name}</h1>
-      <div id="bodyContent">
-      <p>${trails[0].summary}</p>
-      <img src="${trails[0].imgSmall}">
-      <p>${trails[0].precipitation} inches of precipitation in past 24 hours</p>
-      </div>
-      </div>`
-
-  let infowindow = new google.maps.InfoWindow({
-    content: trail1_contentString
-  });
-
-  let marker = new google.maps.Marker({
-    position: trail1,
-    map: map,
-    title: `${trails[0].name}`
-  });
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
+    center: trails[0].coordinates
+  })
+  trails.forEach(function(trail, index) {
+    const contentString = `<div id="content">
+        <div id="siteNotice">
+        </div>
+        <h1 id="firstHeading" class="firstHeading">${trail.name}</h1>
+        <div id="bodyContent">
+        <p>${trail.location}. ${trail.length} miles. ${trail.summary}</p>
+        <img class="thumbnail" src="${trail.imgSmall}">
+        <p class="weatherConditions">${trail.weather}.  <span id="rain">${trail.precipitation} in.</span> of precipitation in past 24 hours</p>
+        </div>
+        </div>`
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    const marker = new google.maps.Marker({
+      position: trail.coordinates,
+      map: map,
+      title: `${trail.name}`
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
   });
 }
 
@@ -139,6 +159,7 @@ function handleSearchButton() {
   console.log('Changing!')
   $( '#submit' ).click(function(){
     event.preventDefault()
+    trails = []
     searchQuery.submittedAddress = $( '#address' ).val()
     searchQuery.searchRadius = $( '#searchRadius' ).val()
     console.log(searchQuery)
@@ -147,4 +168,9 @@ function handleSearchButton() {
   })
 }
 
-handleSearchButton()
+function initializeUI() {
+  showForm()
+  handleSearchButton()
+}
+
+$(initializeUI)
