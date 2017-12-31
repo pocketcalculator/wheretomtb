@@ -23,8 +23,14 @@ const searchQuery = {
 function showForm() {
   const formString = `<form class="frontPageForm">
           <input type="text" name="address" id="address" placeholder="address or zip code" required>
-          <select name="radius" id="searchRadius" required>
-            <option value="" disabled selected>Radius</option>
+          <select name="trailLength" id="trailLength" required>
+            <option value="" disabled selected>Minimum Trail Length</option>
+            <option value="1">1 Mile</option>
+            <option value="3">3 Miles</option>
+            <option value="5">5 Miles</option>
+            <option value="10">10 Miles</option>
+          </select><select name="radius" id="searchRadius" required>
+            <option value="" disabled selected>Search Radius</option>
             <option value="5">5 Miles</option>
             <option value="10">10 Miles</option>
             <option value="20">20 Miles</option>
@@ -161,6 +167,7 @@ function handleSearchButton() {
     event.preventDefault()
     trails = []
     searchQuery.submittedAddress = $( '#address' ).val()
+    searchQuery.trailLength = $( '#trailLength').val()
     searchQuery.searchRadius = $( '#searchRadius' ).val()
     console.log(searchQuery)
     getUserLocation(searchQuery)
