@@ -29,7 +29,8 @@ function showForm() {
             <option value="3">3 Miles</option>
             <option value="5">5 Miles</option>
             <option value="10">10 Miles</option>
-          </select><select name="radius" id="searchRadius" required>
+          </select>
+          <select name="radius" id="searchRadius" required>
             <option value="" disabled selected>Search Radius</option>
             <option value="5">5 Miles</option>
             <option value="10">10 Miles</option>
