@@ -15,7 +15,7 @@ let trails = []
 const searchQuery = {
   submittedAddress: [],
   searchRadius: 10,
-  trailLength: 5
+  trailLength: 3
 }
 
 //const lat = '36.0598781'
