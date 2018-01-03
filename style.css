@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background: url('landingpage-background.jpg') repeat-y center center fixed;
 }
 
 main {
@@ -10,15 +11,17 @@ main {
 
 main * {
   box-sizing: border-box;
+  font-size: 24px;
+  font-family: sans-serif;
 }
 
 header {
     width: 100%;
     height: 10%;
-    background-color: white;
-    color: black;
+    background-color: none;
+    color: white;
     text-align: right;
-    padding-right: 25px;
+    padding-right: 2%;
 }
 
 header h1 {
@@ -28,19 +31,74 @@ header h1 {
 /* Optional: Makes the sample page fill the window. */
 
 .frontPageForm {
-  width: 200px;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
-  display: block;
+  padding-top: 1%;
+  padding-left: 10%;
+  padding-right: 10%;;
+  border-radius: 5px;
+  border: 2px solid navy;
+  background-color: none;
+  font-size: 24px;
+  text-align: center;
+}
+
+.frontPageForm legend {
+  color: white;
 }
 
 .frontPageForm input {
-  display: block;
+  color: black;
+}
+
+.frontPageForm fieldset {
+  border: none;
+  padding: 0;
+  color: black;
 }
 
 .frontPageForm button {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 8px;
+  background-color: white;
+  font-weight: 600;
+  color: black;
+  border: 2px solid darkgrey;
+
+}
+
+#address {
+  margin-top: 10px;
+  width: 80%;
+  border-radius: 3px;
+  font-weight: 600;
+  color: black;
+}
+
+#trailLength {
+  margin-top: 10px;
+  width: 80%;
+  border-radius: 3px;
+  font-weight: 600;
+  color: black;
+}
+
+#searchRadius {
+  margin-top: 10px;
+  width: 80%;
+  border-radius: 3px;
+  font-weight:  600;
+  color: black;
 }
 
 #map {

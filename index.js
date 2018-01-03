@@ -22,7 +22,9 @@ const searchQuery = {
 //const lon = '-84.3311592'
 function showForm() {
   const formString = `<form class="frontPageForm">
-          <input type="text" name="address" id="address" placeholder="address or zip code" required>
+            <fieldset>
+            <legend>Find great local bike trails with real-time weather conditions! </legend>
+            <input type="text" name="address" id="address" placeholder="address or zip code" required>
           <select name="trailLength" id="trailLength" required>
             <option value="" disabled selected>Minimum Trail Length</option>
             <option value="1">1 Mile</option>
@@ -37,7 +39,8 @@ function showForm() {
             <option value="20">20 Miles</option>
             <option value="50">50 Miles</option>
           </select>
-          <button type="submit" name="submit" id="submit">Go!</button>
+          <button type="submit" name="submit" id="submit">GO!</button>
+        </fieldset>
         </form>
     `
   $('main').html(formString)
