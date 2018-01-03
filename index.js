@@ -26,11 +26,11 @@ function showForm() {
               <legend>Discover local bike trails with real-time weather conditions! </legend>
               <input type="text" name="address" id="address" placeholder="Address or Zip" required>
                 <select name="trailLength" id="trailLength" required>
-                  <option value="" disabled selected>Minimum Trail Length</option>
-                  <option value="1">1 Mile</option>
-                  <option value="3">3 Miles</option>
-                  <option value="5">5 Miles</option>
-                  <option value="10">10 Miles</option>
+                  <option value="" disabled selected>Trail Length</option>
+                  <option value="1">1+ Mile</option>
+                  <option value="3">3+ Miles</option>
+                  <option value="5">5+ Miles</option>
+                  <option value="10">10+ Miles</option>
                 </select>
                 <select name="radius" id="searchRadius" required>
                   <option value="" disabled selected>Search Radius</option>

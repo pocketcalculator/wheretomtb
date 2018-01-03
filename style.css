@@ -33,17 +33,20 @@ header h1 {
   margin-right: auto;
   margin-top: 100px;
   padding-top: 1%;
-  padding-left: 10%;
-  padding-right: 10%;;
+  padding-left: 7%;
+  padding-right: 7%;
   border-radius: 20px;
   border: 2px solid #2f528f;
   background: rgba(51, 63, 80, 0.6);
-  font-size: 14px;
+  font-size: 18px;
   text-align: center;
 }
 
 .frontPageForm legend {
   text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  font-size: 22px;
   color: white;
 }
 
@@ -76,6 +79,7 @@ header h1 {
 
 #address {
   margin-top: 10px;
+  padding: 10px 10px;
   width: 80%;
   border-radius: 3px;
   font-weight: 600;
@@ -84,6 +88,7 @@ header h1 {
 
 #trailLength {
   margin-top: 10px;
+  padding: 10px 10px;
   width: 80%;
   border-radius: 3px;
   font-weight: 600;
@@ -92,6 +97,7 @@ header h1 {
 
 #searchRadius {
   margin-top: 10px;
+  padding: 10px 10px;
   width: 80%;
   border-radius: 3px;
   font-weight:  600;
