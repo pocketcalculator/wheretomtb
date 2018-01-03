@@ -11,7 +11,6 @@ main {
 
 main * {
   box-sizing: border-box;
-  font-size: 24px;
   font-family: sans-serif;
 }
 
@@ -28,8 +27,6 @@ header h1 {
   margin-bottom: 0;
 }
 
-/* Optional: Makes the sample page fill the window. */
-
 .frontPageForm {
   width: 80%;
   margin-left: auto;
@@ -38,14 +35,15 @@ header h1 {
   padding-top: 1%;
   padding-left: 10%;
   padding-right: 10%;;
-  border-radius: 5px;
-  border: 2px solid navy;
-  background-color: none;
-  font-size: 24px;
+  border-radius: 20px;
+  border: 2px solid #2f528f;
+  background: rgba(51, 63, 80, 0.6);
+  font-size: 14px;
   text-align: center;
 }
 
 .frontPageForm legend {
+  text-align: center;
   color: white;
 }
 
@@ -63,8 +61,8 @@ header h1 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 25px;
+  margin-bottom: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 30px;
@@ -74,7 +72,6 @@ header h1 {
   font-weight: 600;
   color: black;
   border: 2px solid darkgrey;
-
 }
 
 #address {

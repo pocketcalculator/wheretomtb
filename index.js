@@ -23,26 +23,25 @@ const searchQuery = {
 function showForm() {
   const formString = `<form class="frontPageForm">
             <fieldset>
-            <legend>Find great local bike trails with real-time weather conditions! </legend>
-            <input type="text" name="address" id="address" placeholder="address or zip code" required>
-          <select name="trailLength" id="trailLength" required>
-            <option value="" disabled selected>Minimum Trail Length</option>
-            <option value="1">1 Mile</option>
-            <option value="3">3 Miles</option>
-            <option value="5">5 Miles</option>
-            <option value="10">10 Miles</option>
-          </select>
-          <select name="radius" id="searchRadius" required>
-            <option value="" disabled selected>Search Radius</option>
-            <option value="5">5 Miles</option>
-            <option value="10">10 Miles</option>
-            <option value="20">20 Miles</option>
-            <option value="50">50 Miles</option>
-          </select>
-          <button type="submit" name="submit" id="submit">GO!</button>
-        </fieldset>
-        </form>
-    `
+              <legend>Discover local bike trails with real-time weather conditions! </legend>
+              <input type="text" name="address" id="address" placeholder="Address or Zip" required>
+                <select name="trailLength" id="trailLength" required>
+                  <option value="" disabled selected>Minimum Trail Length</option>
+                  <option value="1">1 Mile</option>
+                  <option value="3">3 Miles</option>
+                  <option value="5">5 Miles</option>
+                  <option value="10">10 Miles</option>
+                </select>
+                <select name="radius" id="searchRadius" required>
+                  <option value="" disabled selected>Search Radius</option>
+                  <option value="5">5 Miles</option>
+                  <option value="10">10 Miles</option>
+                  <option value="20">20 Miles</option>
+                  <option value="50">50 Miles</option>
+                </select>
+                <button type="submit" name="submit" id="submit">GO!</button>
+            </fieldset>
+          </form>`
   $('main').html(formString)
 }
 
