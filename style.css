@@ -18,6 +18,16 @@ main * {
   font-family: sans-serif;
 }
 
+a:link {
+  text-decoration: none;
+  color: white;
+}
+
+a:visited {
+  text-decoration: none;
+  color:white;
+}
+
 header {
     width: 100%;
     height: 125px;
