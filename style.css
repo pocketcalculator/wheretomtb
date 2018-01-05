@@ -1,7 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('landingpage-background-3.jpg') center center fixed;
+    background: url('landingpage-background-dark.jpg') center center fixed;
+    background-repeat: no-repeat;
 }
 
 body * {
@@ -41,7 +42,7 @@ header h1 {
   padding-right: 7%;
   border-radius: 20px;
   border: 2px solid #2f528f;
-  background: rgba(51, 63, 80, 0.6);
+  background: rgba(51, 63, 80, 0.8);
   font-size: 18px;
   text-align: center;
 }
@@ -91,9 +92,9 @@ header h1 {
   padding-right: 7%;
   border-radius: 20px;
   border: 2px solid #2f528f;
-  background: rgba(51, 63, 80, 0.6);
+  background: rgba(51, 63, 80, 0.8);
   color: white;
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
 }
 

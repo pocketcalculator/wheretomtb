@@ -80,7 +80,7 @@ function getMTBData(location) {
             </button>
           </div>`
   const noMTBDataString = `<div class="errorMessage">
-            <p>No results found.  Modify your search criteria and try again.</p>
+            <p>No trails found.  Modify your search criteria and try again.</p>
             <button id="okButton">
               <span class="buttonLabel">OK</span>
             </button>
