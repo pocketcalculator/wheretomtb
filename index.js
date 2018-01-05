@@ -25,27 +25,34 @@ function showForm() {
             <fieldset>
               <legend>Discover local bike trails with real-time weather conditions! </legend>
               <input type="text" name="address" id="address" placeholder="Address or Zip" required>
-                <select name="trailLength" id="trailLength" required>
-                  <option value="" disabled selected>Trail Length</option>
-                  <option value="1">1+ Mile</option>
-                  <option value="3">3+ Miles</option>
-                  <option value="5">5+ Miles</option>
-                  <option value="10">10+ Miles</option>
-                </select>
-                <select name="radius" id="searchRadius" required>
-                  <option value="" disabled selected>Search Radius</option>
-                  <option value="5">5 Miles</option>
-                  <option value="10">10 Miles</option>
-                  <option value="20">20 Miles</option>
-                  <option value="50">50 Miles</option>
-                </select>
-                <button type="submit" name="submit" id="submit">GO!</button>
+              <select name="trailLength" id="trailLength" required>
+                <option value="">Trail Length</option>
+                <option value="1">1+ Mile</option>
+                <option value="3">3+ Miles</option>
+                <option value="5">5+ Miles</option>
+                <option value="10">10+ Miles</option>
+              </select>
+              <select name="radius" id="searchRadius" required>
+                <option value="" disabled selected>Search Radius</option>
+                <option value="5">5 Miles</option>
+                <option value="10">10 Miles</option>
+                <option value="20">20 Miles</option>
+                <option value="50">50 Miles</option>
+              </select>
+              <input type="submit" value="GO!" id="submit"></input>
             </fieldset>
           </form>`
   $('main').html(formString)
+  handleSearchButton()
 }
 
 function getUserLocation(searchQuery) {
+  const locationErrorString = `<div class="errorMessage">
+            <p>Invalid location.  Check your location and try again.</p>
+            <button id="okButton">
+              <span class="buttonLabel">OK</span>
+            </button>
+          </div>`
   const settings = {
     url: GOOGLE_MAPS_GEOCODING_URL,
     data: {
@@ -54,14 +61,30 @@ function getUserLocation(searchQuery) {
     },
     type: 'GET',
     dataType: 'JSON',
-    success: function(data){
+    success: function(data) {
       getMTBData(data.results[0].geometry.location)
+    },
+    error: function(error) {
+      $('main').html(locationErrorString)
+      handleOKButton()
     }
   }
   $.ajax(settings)
 }
 
 function getMTBData(location) {
+  const getMTBDataErrorString = `<div class="errorMessage">
+            <p>Invalid location.  Check your location and try again.</p>
+            <button id="okButton">
+              <span class="buttonLabel">OK</span>
+            </button>
+          </div>`
+  const noMTBDataString = `<div class="errorMessage">
+            <p>No results found.  Modify your search criteria and try again.</p>
+            <button id="okButton">
+              <span class="buttonLabel">OK</span>
+            </button>
+          </div>`
   const settings = {
     url: MTB_PROJECT_URL,
     data: {
@@ -85,8 +108,13 @@ function getMTBData(location) {
         })
       }
       else {
-        $('main').html(`<p>No results found.  Try expanding your search radius.</p>`)
+        $('main').html(noMTBDataString)
+        handleOKButton()
       }
+    },
+    error: function(error) {
+      $('main').html(getMTBDataErrorString)
+      handleOKButton()
     }
   }
   $.ajax(settings)
@@ -103,6 +131,7 @@ function getAccuWeatherLocationKey(trail, count) {
     type: 'GET',
     dataType: 'JSON',
     success: function(data) {
+      $( 'main' ).html(`<div id="map"></div>`)
       getRainData(data.Key, trail, count)
     }
   }
@@ -125,7 +154,6 @@ function getRainData(locationKey, trail, count) {
       trails.push(trail)
       if ( trails.length >= count ) {
         console.log('Done!')
-        $( 'main' ).html(`<section id="map"></section>`)
         initMap(trails)
       }
     }
@@ -136,7 +164,7 @@ function getRainData(locationKey, trail, count) {
 function initMap(trails) {
   console.log(trails)
   const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    zoom: 9,
     center: trails[0].coordinates
   })
   trails.forEach(function(trail, index) {
@@ -166,7 +194,7 @@ function initMap(trails) {
 
 function handleSearchButton() {
   console.log('Changing!')
-  $( '#submit' ).click(function(){
+  $( '.frontPageForm' ).submit(function(event){
     event.preventDefault()
     trails = []
     searchQuery.submittedAddress = $( '#address' ).val()
@@ -174,13 +202,18 @@ function handleSearchButton() {
     searchQuery.searchRadius = $( '#searchRadius' ).val()
     console.log(searchQuery)
     getUserLocation(searchQuery)
-  $( 'main' ).empty()
+  })
+}
+
+function handleOKButton() {
+  $('#okButton').click(function(event) {
+    initializeUI()
   })
 }
 
 function initializeUI() {
+  $('main').empty()
   showForm()
-  handleSearchButton()
 }
 
 $(initializeUI)
