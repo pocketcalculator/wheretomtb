@@ -167,6 +167,9 @@ function initMap(trails) {
     zoom: 9,
     center: trails[0].coordinates
   })
+  google.maps.event.addListener(map, 'idle', function() {
+    $('.gm-style').removeClass('gm-style')
+  })
   trails.forEach(function(trail, index) {
     const contentString = `<div id="content">
         <div id="siteNotice">
