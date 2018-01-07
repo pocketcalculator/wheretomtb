@@ -109,7 +109,7 @@ header h1 {
 }
 
 .thumbnail {
-  max-width: 140px;
+  max-width: 150px;
   float: left;
 }
 
@@ -118,21 +118,23 @@ header h1 {
   font-size: 24px;
   margin-left: 155px;
   margin-top: 5px;
-  margin-bottom: 15px;
   border-radius: 8px;
 }
 
 .badWeather {
   color: white;
-  background-image: url('raincloud.jpg')
+  background: url('raincloud.jpg') no-repeat;
+  max-width: 150px;
 }
 
 .goodWeather {
   border: 1px solid rgba(126, 192, 238, 1);
+  background: url('bluesky.jpg') no-repeat;
+  max-width: 150px;
 }
 
 .goodWeather > #rideStatus {
-  color: rgba(126, 192, 238, 1);
+//  color: rgba(126, 192, 238, 1);
 }
 
 .badWeather > #rideStatus {
