@@ -150,7 +150,9 @@ function getRainData(locationKey, trail, count) {
     dataType: 'JSON',
     success: function(data) {
       trail.weather = data[0].WeatherText
-      trail.precipitation = data[0].PrecipitationSummary.Past24Hours.Imperial.Value
+      trail.temperature = data[0].Temperature.Imperial.Value
+      trail.precipitation24 = data[0].PrecipitationSummary.Past24Hours.Imperial.Value
+      trail.precipitation9 = data[0].PrecipitationSummary.Past9Hours.Imperial.Value
       trails.push(trail)
       if ( trails.length >= count ) {
         console.log('Done!')
@@ -171,16 +173,34 @@ function initMap(trails) {
     $('.gm-style').removeClass('gm-style')
   })
   trails.forEach(function(trail, index) {
+    let rideRecommendation = ''
+    let weatherStatus = ''
+    if ( trail.precipitation24 >= .50 || trail.precipitation9 >= .25 ) {
+      weatherStatus = 'badWeather'
+      rideStatusMessage = 'AVOID!'
+
+    } else {
+      weatherStatus = 'goodWeather'
+      rideStatusMessage = 'Good.'
+    }
+    if (!trail.imgSmall) {
+      trail.imgSmall = 'default-img.png'
+    }
     const contentString = `<div id="content">
         <div id="siteNotice">
         </div>
         <h1 id="firstHeading" class="firstHeading">${trail.name}</h1>
-        <div id="bodyContent">
-        <p>${trail.location}. ${trail.length} miles. ${trail.summary}</p>
-        <img class="thumbnail" src="${trail.imgSmall}">
-        <p class="weatherConditions">${trail.weather}.  <span id="rain">${trail.precipitation} in.</span> of precipitation in past 24 hours</p>
+        <div id="bodyContent" "${weatherStatus}">
+          <p id="trailSummary">${trail.location}. ${trail.length} miles. ${trail.summary}</p>
+          <img class="thumbnail" src="${trail.imgSmall}">
+          <div class="weatherConditions">
+            <p id="trailWeather">${trail.weather}, ${trail.temperature}<span id="degrees">&#8457.</span></p>
+            <p id="rain">${trail.precipitation24} in.</p>
+            <p id="rainDescription">of precipitation in past 24 hours.</p>
+            <p id="rideStatus">${rideStatusMessage}</p>
+          </div>
         </div>
-        </div>`
+      </div>`
     const infowindow = new google.maps.InfoWindow({
       content: contentString
     });
