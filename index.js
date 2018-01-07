@@ -181,7 +181,7 @@ function initMap(trails) {
 
     } else {
       weatherStatus = 'goodWeather'
-      rideStatusMessage = 'Good.'
+      rideStatusMessage = 'RIDE!'
     }
     if (!trail.imgSmall) {
       trail.imgSmall = 'default-img.png'
@@ -190,10 +190,10 @@ function initMap(trails) {
         <div id="siteNotice">
         </div>
         <h1 id="firstHeading" class="firstHeading">${trail.name}</h1>
-        <div id="bodyContent" "${weatherStatus}">
+        <div id="bodyContent">
           <p id="trailSummary">${trail.location}. ${trail.length} miles. ${trail.summary}</p>
           <img class="thumbnail" src="${trail.imgSmall}">
-          <div class="weatherConditions">
+          <div class="weatherConditions ${weatherStatus}">
             <p id="trailWeather">${trail.weather}, ${trail.temperature}<span id="degrees">&#8457.</span></p>
             <p id="rain">${trail.precipitation24} in.</p>
             <p id="rainDescription">of precipitation in past 24 hours.</p>

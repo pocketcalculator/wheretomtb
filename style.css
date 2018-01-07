@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: black url('landingpage-background-dark.jpg') center center fixed no-repeat;
+    background: darkgrey url('landingpage-background-dark.jpg') center center fixed no-repeat;
 }
 
 body * {
@@ -108,15 +108,34 @@ header h1 {
 }
 
 .thumbnail {
-  max-width: 150px;
+  max-width: 140px;
   float: left;
 }
 
 .weatherConditions {
+  padding: 10px;
   font-size: 24px;
-  margin-left: 160px;
+  margin-left: 155px;
   margin-top: 5px;
   margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.badWeather {
+  color: white;
+  background-image: url('raincloud.jpg')
+}
+
+.goodWeather {
+  border: 1px solid rgba(126, 192, 238, 1);
+}
+
+.goodWeather > #rideStatus {
+  color: rgba(126, 192, 238, 1);
+}
+
+.badWeather > #rideStatus {
+  color: red;
 }
 
 #bodyContent {
@@ -156,7 +175,7 @@ header h1 {
 #rideStatus {
   margin-top: 10px;
   margin-bottom: 0;
-  font-size: 34px;
+  font-size: 24px;
   font-weight: 600;
 }
 
