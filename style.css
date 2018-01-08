@@ -129,8 +129,12 @@ header h1 {
 
 .goodWeather {
   border: 1px solid rgba(126, 192, 238, 1);
-  background: url('bluesky.jpg') no-repeat;
-  max-width: 150px;
+  background: url('bluesky2.jpg') no-repeat;
+}
+
+.trailWeather {
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
 .goodWeather > #rideStatus {
@@ -153,11 +157,6 @@ header h1 {
 #trailSummary {
   margin-top: 5px;
   font-size: 14px;
-}
-
-#trailWeather {
-  margin-top: 0;
-  margin-bottom: 10px;
 }
 
 #degrees {
