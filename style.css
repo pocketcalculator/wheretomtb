@@ -115,7 +115,7 @@ header h1 {
 
 .weatherConditions {
   padding: 10px;
-  font-size: 24px;
+  font-size: 22px;
   margin-left: 155px;
   margin-top: 5px;
   border-radius: 8px;
@@ -123,7 +123,7 @@ header h1 {
 
 .trailWeather {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .badWeather {
