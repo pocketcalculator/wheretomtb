@@ -261,3 +261,9 @@ header h1 {
   right: 0;
   bottom: 0
   }
+
+#accessibilityList {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}

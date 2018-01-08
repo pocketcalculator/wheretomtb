@@ -73,14 +73,10 @@ function getUserLocation(searchQuery) {
 }
 
 function getMTBData(location) {
-  const getMTBDataErrorString = `<div class="errorMessage">
-            <p>Invalid location.  Check your location and try again.</p>
-            <button id="okButton">
-              <span class="buttonLabel">OK</span>
-            </button>
-          </div>`
-  const noMTBDataString = `<div class="errorMessage">
-            <p>No trails found.  Modify your search criteria and try again.</p>
+  const getMTBDataErrorString = "Invalid location.  Check your location and try again."
+  const noMTBDataString = "No trails found.  Modify your search criteria and try again."
+  const errorMessage = `<div class="errorMessage">
+            <p id="errorMessage" aria-live="assertive"></p>
             <button id="okButton">
               <span class="buttonLabel">OK</span>
             </button>
@@ -108,13 +104,15 @@ function getMTBData(location) {
         })
       }
       else {
-        $('main').html(noMTBDataString)
+        $('main').html(errorMessage)
         handleOKButton()
+        $('#errorMessage').text(noMTBDataString)
       }
     },
     error: function(error) {
-      $('main').html(getMTBDataErrorString)
+      $('main').html(errorMessage)
       handleOKButton()
+      $('#errorMessage').text(getMTBDataErrorString)
     }
   }
   $.ajax(settings)
@@ -172,6 +170,8 @@ function initMap(trails) {
   google.maps.event.addListener(map, 'idle', function() {
     $('.gm-style').removeClass('gm-style')
   })
+  $('main').append('<ol id="accessibilityList" aria-live="assertive"></ol>')
+  const accessibilityTrailList = []
   trails.forEach(function(trail, index) {
     let rideRecommendation = ''
     let weatherStatus = ''
@@ -189,7 +189,7 @@ function initMap(trails) {
     const contentString = `<div id="content">
         <div id="siteNotice">
         </div>
-        <h1 id="firstHeading" class="firstHeading">${trail.name}</h1>
+        <span id="firstHeading" class="firstHeading">${trail.name}</span>
         <div id="bodyContent">
           <p id="trailSummary">${trail.location}. ${trail.length} miles. ${trail.summary}</p>
           <img class="thumbnail" src="${trail.imgSmall}">
@@ -202,6 +202,8 @@ function initMap(trails) {
           </div>
         </div>
       </div>`
+    const accessibilityContentString =`<li>${trail.name}, ${trail.length}, ${trail.summary}, ${trail.weather}, ${trail.temperature}, ${trail.precipitation24}, ${rideStatusMessage}</li>`
+    accessibilityTrailList.push(accessibilityContentString)
     const infowindow = new google.maps.InfoWindow({
       content: contentString
     });
@@ -213,6 +215,7 @@ function initMap(trails) {
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
+    $('#accessibilityList').html(accessibilityTrailList.join('\n'))
   });
 }
 
