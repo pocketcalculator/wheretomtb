@@ -115,26 +115,33 @@ header h1 {
 
 .weatherConditions {
   padding: 10px;
-  font-size: 24px;
+  font-size: 18px;
   margin-left: 155px;
   margin-top: 5px;
   border-radius: 8px;
 }
 
+.trailWeather {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
 .badWeather {
   color: white;
   background: url('raincloud.jpg') no-repeat;
-  max-width: 150px;
 }
 
 .goodWeather {
   border: 1px solid rgba(126, 192, 238, 1);
   background: url('bluesky2.jpg') no-repeat;
+<<<<<<< HEAD
 }
 
 .trailWeather {
   margin-top: 0;
   margin-bottom: 5px;
+=======
+>>>>>>> 06dc607cfde16dc0845f3ad66c0686e805a7389f
 }
 
 .goodWeather > #rideStatus {
@@ -164,13 +171,13 @@ header h1 {
 }
 
 #rain {
-  font-size: 24px;
-  margin-top: 5px;
+  font-size: 18px;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
 #rainDescription {
-  margin-top: 0;
+  margin-top: 2px;
   font-size:10px;
 }
 
