@@ -90,6 +90,20 @@ header h1 {
   font-weight: 600;
   color: black;
   border: 2px solid darkgrey;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.frontPageForm input[type="submit"]:hover {
+  border: 2px solid white;
+  background-color: black;
+  color: white;
+}
+
+.frontPageForm input[type="submit"]:active {
+  border: 2px solid white;
+  background-color: black;
+  color: white;
 }
 
 .errorMessage {
@@ -134,18 +148,11 @@ header h1 {
 .goodWeather {
   border: 1px solid rgba(126, 192, 238, 1);
   background: url('bluesky2.jpg') no-repeat;
-<<<<<<< HEAD
 }
 
 .trailWeather {
   margin-top: 0;
   margin-bottom: 5px;
-=======
->>>>>>> 06dc607cfde16dc0845f3ad66c0686e805a7389f
-}
-
-.goodWeather > #rideStatus {
-//  color: rgba(126, 192, 238, 1);
 }
 
 .badWeather > #rideStatus {
@@ -204,6 +211,20 @@ header h1 {
   font-weight: 600;
   color: black;
   border: 2px solid darkgrey;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+#okButton:hover {
+  border: 2px solid white;
+  background-color: black; /* Green */
+  color: white;
+}
+
+#okButton:active {
+  border: 2px solid white;
+  background-color: black; /* Green */
+  color: white;
 }
 
 #address {
