@@ -175,7 +175,7 @@ function initMap(trails) {
   trails.forEach(function(trail, index) {
     let rideRecommendation = ''
     let weatherStatus = ''
-    if ( trail.precipitation24 >= .50 || trail.precipitation9 >= .25 ) {
+    if ( trail.precipitation24 >= .50 || trail.precipitation9 >= .25 || trail.weather == "Thunderstorm" || trail.Weather == "Rain" ) {
       weatherStatus = 'badWeather'
       rideStatusMessage = 'AVOID!'
 
@@ -194,7 +194,8 @@ function initMap(trails) {
           <p id="trailSummary">${trail.location}. ${trail.length} miles. ${trail.summary}</p>
           <img class="thumbnail" src="${trail.imgSmall}">
           <div class="weatherConditions ${weatherStatus}">
-            <p id="trailWeather">${trail.weather}, ${trail.temperature}<span id="degrees">&#8457.</span></p>
+            <p class="trailWeather">${trail.weather}.</p>
+            <p class="trailWeather">${trail.temperature}<span id="degrees">&#8457.</span></p>
             <p id="rain">${trail.precipitation24} in.</p>
             <p id="rainDescription">of precipitation in past 24 hours.</p>
             <p id="rideStatus">${rideStatusMessage}</p>
