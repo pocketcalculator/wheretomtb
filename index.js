@@ -175,7 +175,7 @@ function initMap(trails) {
   trails.forEach(function(trail, index) {
     let rideRecommendation = ''
     let weatherStatus = ''
-    if ( trail.precipitation24 >= .50 || trail.precipitation9 >= .25 || trail.weather == "Thunderstorm" || trail.weather == "Rain" ) {
+    if ( trail.precipitation24 >= .50 || trail.precipitation9 >= .25 || trail.weather === "Thunderstorm" || trail.weather === "Rain" ) {
       weatherStatus = 'badWeather'
       rideStatusMessage = 'AVOID!'
 
@@ -183,6 +183,7 @@ function initMap(trails) {
       weatherStatus = 'goodWeather'
       rideStatusMessage = 'RIDE!'
     }
+    console.log(trail.name,trail.weather,rideStatusMessage)
     if (!trail.imgSmall) {
       trail.imgSmall = 'default-img.png'
     }

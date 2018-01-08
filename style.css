@@ -159,6 +159,11 @@ header h1 {
   color: red;
 }
 
+#firstHeading {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 #bodyContent {
   max-width: 350px;
 }
