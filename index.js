@@ -175,7 +175,7 @@ function initMap(trails) {
   trails.forEach(function(trail, index) {
     let rideRecommendation = ''
     let weatherStatus = ''
-    if ( trail.precipitation24 >= .50 || trail.precipitation9 >= .15 || trail.weather === "Thunderstorm" || trail.weather === "Rain" || trail.weather === "Light rain" ) {
+    if ( trail.precipitation24 >= .50 || trail.precipitation9 >= .15 || trail.weather === "Thunderstorm" || trail.weather === "Rain" || trail.weather === "Light rain" || trail.weather === "Heavy rain" ) {
       weatherStatus = 'badWeather'
       rideStatusMessage = 'AVOID!'
 
