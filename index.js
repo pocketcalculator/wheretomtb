@@ -7,10 +7,6 @@ const MTB_PROJECT_API_KEY = '6523910-ecc597968f8123f52f6697bda4652415'
 const MTB_PROJECT_URL = 'https://www.mtbproject.com/data/get-trails'
 
 let trails = []
-// name = name,
-// summary = summary,
-// img = imgSmall,
-// precipitation = precipitation
 
 const searchQuery = {
   submittedAddress: [],
@@ -18,8 +14,6 @@ const searchQuery = {
   trailLength: 2.5
 }
 
-//const lat = '36.0598781'
-//const lon = '-84.3311592'
 function showForm() {
   const formString = `<form class="frontPageForm">
             <fieldset>
@@ -118,6 +112,10 @@ function getMTBData(location) {
   $.ajax(settings)
 }
 
+/* Retrieving data from AccuWeather's API requires two steps:
+   1. Obtain a location key based on a city name
+   2. Retrieve weather object data for that location key */
+
 function getAccuWeatherLocationKey(trail, count) {
   const coordinates = `${trail.coordinates.lat},${trail.coordinates.lng}`
   const settings = {
@@ -153,7 +151,6 @@ function getRainData(locationKey, trail, count) {
       trail.precipitation9 = data[0].PrecipitationSummary.Past9Hours.Imperial.Value
       trails.push(trail)
       if ( trails.length >= count ) {
-        console.log('Done!')
         initMap(trails)
       }
     }
@@ -162,11 +159,11 @@ function getRainData(locationKey, trail, count) {
 }
 
 function initMap(trails) {
-  console.log(trails)
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 9,
     center: trails[0].coordinates
   })
+// Doing this allows you to customize the Google Maps Infowindow
   google.maps.event.addListener(map, 'idle', function() {
     $('.gm-style').removeClass('gm-style')
   })
@@ -178,12 +175,10 @@ function initMap(trails) {
     if ( trail.precipitation24 >= .50 || trail.precipitation9 >= .15 || trail.weather === "Thunderstorm" || trail.weather === "Rain" || trail.weather === "Light rain" || trail.weather === "Heavy rain" ) {
       weatherStatus = 'badWeather'
       rideStatusMessage = 'AVOID!'
-
     } else {
       weatherStatus = 'goodWeather'
       rideStatusMessage = 'RIDE!'
     }
-    console.log(trail.name,trail.weather,rideStatusMessage)
     if (!trail.imgSmall) {
       trail.imgSmall = 'default-img.png'
     }
@@ -221,14 +216,12 @@ function initMap(trails) {
 }
 
 function handleSearchButton() {
-  console.log('Changing!')
   $( '.frontPageForm' ).submit(function(event){
     event.preventDefault()
     trails = []
     searchQuery.submittedAddress = $( '#address' ).val()
     searchQuery.trailLength = $( '#trailLength').val()
     searchQuery.searchRadius = $( '#searchRadius' ).val()
-    console.log(searchQuery)
     getUserLocation(searchQuery)
   })
 }
