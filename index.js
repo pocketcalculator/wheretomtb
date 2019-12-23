@@ -1,9 +1,9 @@
-const GOOGLE_MAPS_GEOCODING_API_KEY = 'AIzaSyB3Vcl4OPXv5kIw7P6zIQsroab_GQsOL38'
+const GOOGLE_MAPS_GEOCODING_API_KEY = '<GOOGLE_MAPS_GEOCODING_API_KEY>'
 const GOOGLE_MAPS_GEOCODING_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
-const ACCUWEATHER_API_KEY = 'KsDvhfHmutOyEZrgHhapjgBRJBrdpyov'
+const ACCUWEATHER_API_KEY = '<ACCUWEATHER_API_KEY>'
 const ACCUWEATHER_GET_LOCATION_KEY_URL = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search'
 const ACCUWEATHER_CURRENT_CONDITIONS_URL = 'https://dataservice.accuweather.com/currentconditions/v1/'
-const MTB_PROJECT_API_KEY = '6523910-ecc597968f8123f52f6697bda4652415'
+const MTB_PROJECT_API_KEY = '<MTB_PROJECT_API_KEY>'
 const MTB_PROJECT_URL = 'https://www.mtbproject.com/data/get-trails'
 
 let trails = []
